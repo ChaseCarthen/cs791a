@@ -83,7 +83,7 @@ void renderer::useProgram()
 void renderer::render(int count)
 {
  glDrawElements(
-     GL_LINES,      // mode
+     GL_TRIANGLES,      // mode
      count,    // count
      GL_UNSIGNED_INT,   // type
      (void*)0           // element array buffer offset

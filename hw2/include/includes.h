@@ -22,4 +22,14 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 #include <gishandler.h>
+#include <math.h>
+#include <glm/gtx/norm.hpp>
+#include <iomanip>
+#include <map>
+
+//gdal
+#include <gdal_priv.h>
+#include <cpl_conv.h>
+#include <ogrsf_frmts.h>
+
 #endif

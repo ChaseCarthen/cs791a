@@ -1,0 +1,244 @@
+<PAMDataset>
+  <Metadata>
+    <MDI key="byteorder">0123</MDI>
+    <MDI key="nbands">10</MDI>
+    <MDI key="nlines">148</MDI>
+    <MDI key="nsamps">170</MDI>
+  </Metadata>
+  <PAMRasterBand band="1">
+    <Histograms>
+      <HistItem>
+        <HistMin>-62.3959895324707</HistMin>
+        <HistMax>0.03118240356445312</HistMax>
+        <BucketCount>1000</BucketCount>
+        <IncludeOutOfRange>0</IncludeOutOfRange>
+        <Approximate>0</Approximate>
+        <HistCounts>22591|0|0|0|0|0|0|0|3|0|0|0|6|0|0|0|4|0|0|0|0|0|0|0|8|0|0|2|0|0|0|5|0|0|0|2|0|0|0|8|0|0|0|12|0|0|0|2|0|0|0|7|0|0|0|4|0|0|0|13|0|0|0|10|0|0|0|5|0|0|0|9|0|0|4|0|0|0|13|0|0|0|13|0|0|0|5|0|0|0|2|0|0|0|4|0|0|0|1|0|0|0|14|0|0|0|4|0|0|0|0|0|0|0|12|0|0|0|9|0|0|1|0|0|0|33|0|0|0|2|0|0|0|0|0|0|0|12|0|0|0|4|0|0|0|6|0|0|0|26|0|0|0|1|0|0|0|19|0|0|0|10|0|0|0|1|0|0|27|0|0|0|4|0|0|0|1|0|0|0|12|0|0|0|1|0|0|0|0|0|0|0|32|0|0|0|0|0|0|0|0|0|0|0|18|0|0|0|4|0|0|0|0|0|0|24|0|0|0|0|0|0|0|14|0|0|0|0|0|0|0|0|0|0|0|17|0|0|0|1|0|0|0|0|0|0|0|15|0|0|0|1|0|0|0|0|0|0|0|17|0|0|0|0|0|0|0|0|0|0|17|0|0|0|0|0|0|0|0|0|0|0|9|0|0|0|0|0|0|0|14|0|0|0|0|0|0|0|1|0|0|0|7|0|0|0|0|0|0|0|0|0|0|7|0|0|0|1|0|0|0|1|0|0|0|8|0|0|0|0|0|0|0|0|0|0|0|3|0|0|0|1|0|0|0|0|0|0|0|7|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|2008</HistCounts>
+      </HistItem>
+    </Histograms>
+    <Metadata>
+      <MDI key="basic_image_annot">R_n:</MDI>
+      <MDI key="basic_image_bits">8</MDI>
+      <MDI key="basic_image_bytes">1</MDI>
+      <MDI key="basic_image_history">isnobal</MDI>
+      <MDI key="geo_bline">4842544.9</MDI>
+      <MDI key="geo_bsamp">569029.6</MDI>
+      <MDI key="geo_coord_sys_ID">UTM</MDI>
+      <MDI key="geo_dline">-2.5</MDI>
+      <MDI key="geo_dsamp">2.5</MDI>
+      <MDI key="geo_units">meters</MDI>
+      <MDI key="lq_float_0">-62.36480713</MDI>
+      <MDI key="lq_float_1">0</MDI>
+      <MDI key="lq_int_0">0</MDI>
+      <MDI key="lq_int_1">255</MDI>
+      <MDI key="lq_units">W/m^2</MDI>
+      <MDI key="STATISTICS_MAXIMUM">0</MDI>
+      <MDI key="STATISTICS_MEAN">-57.161586789372</MDI>
+      <MDI key="STATISTICS_MINIMUM">-62.364807128906</MDI>
+      <MDI key="STATISTICS_STDDEV">16.91849955862</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="2">
+    <Histograms>
+      <HistItem>
+        <HistMin>-0.001591126799583435</HistMin>
+        <HistMax>3.183844725966454</HistMax>
+        <BucketCount>1000</BucketCount>
+        <IncludeOutOfRange>0</IncludeOutOfRange>
+        <Approximate>0</Approximate>
+        <HistCounts>24593|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|7|0|0|0|1|0|0|0|0|0|0|0|3|0|0|0|0|0|0|0|0|0|0|0|3|0|0|6|0|0|0|1|0|0|0|5|0|0|0|2|0|0|0|0|0|0|0|0|0|0|0|7|0|0|0|1|0|0|0|0|0|0|0|14|0|0|0|0|0|0|0|0|0|0|3|0|0|0|6|0|0|0|0|0|0|0|8|0|0|0|9|0|0|0|0|0|0|0|0|0|0|0|12|0|0|0|6|0|0|0|0|0|0|0|15|0|0|0|0|0|0|0|0|0|0|1|0|0|0|16|0|0|0|1|0|0|0|3|0|0|0|11|0|0|0|0|0|0|0|0|0|0|0|7|0|0|0|19|0|0|0|2|0|0|0|10|0|0|0|8|0|0|0|0|0|0|6|0|0|0|21|0|0|0|6|0|0|0|1|0|0|0|10|0|0|0|2|0|0|0|0|0|0|0|3|0|0|0|25|0|0|0|4|0|0|0|6|0|0|22|0|0|0|2|0|0|0|1|0|0|0|9|0|0|0|26|0|0|0|6|0|0|0|3|0|0|0|9|0|0|0|0|0|0|0|3|0|0|0|21|0|0|0|18|0|0|5|0|0|0|7|0|0|0|6|0|0|0|2|0|0|0|11|0|0|0|5|0|0|0|4|0|0|0|2|0|0|0|6|0|0|0|4|0|0|0|2|0|0|0|3|0|0|2|0|0|0|11|0|0|0|10|0|0|0|6|0|0|0|9|0|0|0|12|0|0|0|4|0|0|0|6|0|0|0|9|0|0|0|4|0|0|0|3|0|0|0|5|0|0|1|0|0|0|2|0|0|0|2|0|0|0|1|0|0|0|1|0|0|0|1|0|0|0|2|0|0|0|1|0|0|0|4|0|0|0|6|0|0|0|1|0|0|0|2|0|0|1|0|0|0|1|0|0|0|5|0|0|0|3|0|0|0|2|0|0|0|0|0|0|0|1</HistCounts>
+      </HistItem>
+    </Histograms>
+    <Metadata>
+      <MDI key="basic_image_annot">H:</MDI>
+      <MDI key="basic_image_bits">8</MDI>
+      <MDI key="basic_image_bytes">1</MDI>
+      <MDI key="basic_image_history">isnobal</MDI>
+      <MDI key="geo_bline">4842544.9</MDI>
+      <MDI key="geo_bsamp">569029.6</MDI>
+      <MDI key="geo_coord_sys_ID">UTM</MDI>
+      <MDI key="geo_dline">-2.5</MDI>
+      <MDI key="geo_dsamp">2.5</MDI>
+      <MDI key="geo_units">meters</MDI>
+      <MDI key="lq_float_0">0</MDI>
+      <MDI key="lq_float_1">3.182253599</MDI>
+      <MDI key="lq_int_0">0</MDI>
+      <MDI key="lq_int_1">255</MDI>
+      <MDI key="lq_units">W/m^2</MDI>
+      <MDI key="STATISTICS_MAXIMUM">3.1822535991669</MDI>
+      <MDI key="STATISTICS_MEAN">0.056290841254218</MDI>
+      <MDI key="STATISTICS_MINIMUM">0</MDI>
+      <MDI key="STATISTICS_STDDEV">0.37379181196173</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="3">
+    <Histograms>
+      <HistItem>
+        <HistMin>-0.0007205543518066407</HistMin>
+        <HistMax>1.441829257965088</HistMax>
+        <BucketCount>1000</BucketCount>
+        <IncludeOutOfRange>0</IncludeOutOfRange>
+        <Approximate>0</Approximate>
+        <HistCounts>24593|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|2|0|0|0|5|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|3|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|4|0|0|0|5|0|0|0|0|0|0|0|1|0|0|0|0|0|0|0|3|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|7|0|0|0|0|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|14|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|9|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|6|0|0|0|11|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|13|0|0|0|5|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|14|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|2|0|0|0|15|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|5|0|0|0|9|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|20|0|0|0|6|0|0|0|2|0|0|0|0|0|0|0|0|0|0|0|17|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|23|0|0|6|0|0|0|4|0|0|0|0|0|0|0|0|0|0|0|8|0|0|0|5|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|7|0|0|0|20|0|0|5|0|0|0|0|0|0|0|0|0|0|0|15|0|0|0|12|0|0|0|3|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|7|0|0|0|12|0|0|0|18|0|0|0|2|0|0|3|0|0|0|2|0|0|0|5|0|0|0|5|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|6|0|0|0|21|0|0|0|10|0|0|0|7|0|0|0|2|0|0|3|0|0|0|6|0|0|0|2|0|0|0|5|0|0|0|0|0|0|0|4|0|0|0|8|0|0|0|4|0|0|0|1|0|0|0|2|0|0|0|1|0|0|0|3|0|0|3|0|0|0|6|0|0|0|1|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|2|0|0|0|3|0|0|0|3|0|0|0|11|0|0|0|5|0|0|0|7|0|0|1|0|0|0|3|0|0|0|6|0|0|0|8|0|0|0|6|0|0|0|3|0|0|0|1|0|0|0|7|0|0|0|6|0|0|0|3|0|0|0|0|0|0|0|2|0|0|3|0|0|0|1|0|0|0|2|0|0|0|3|0|0|0|1|0|0|0|1|0|0|0|1|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|0|0|0|0|2|0|0|1|0|0|0|0|0|0|0|2|0|0|0|3|0|0|0|5|0|0|0|1|0|0|0|0|0|0|0|0|0|0|0|2|0|0|0|1|0|0|0|1|0|0|0|1|0|0|4|0|0|0|0|0|0|0|3|0|0|0|1|0|0|0|1|0|0|0|0|0|0|0|1</HistCounts>
+      </HistItem>
+    </Histograms>
+    <Metadata>
+      <MDI key="basic_image_annot">L_v_E:</MDI>
+      <MDI key="basic_image_bits">8</MDI>
+      <MDI key="basic_image_bytes">1</MDI>
+      <MDI key="basic_image_history">isnobal</MDI>
+      <MDI key="geo_bline">4842544.9</MDI>
+      <MDI key="geo_bsamp">569029.6</MDI>
+      <MDI key="geo_coord_sys_ID">UTM</MDI>
+      <MDI key="geo_dline">-2.5</MDI>
+      <MDI key="geo_dsamp">2.5</MDI>
+      <MDI key="geo_units">meters</MDI>
+      <MDI key="lq_float_0">0</MDI>
+      <MDI key="lq_float_1">1.441108704</MDI>
+      <MDI key="lq_int_0">0</MDI>
+      <MDI key="lq_int_1">255</MDI>
+      <MDI key="lq_units">W/m^2</MDI>
+      <MDI key="STATISTICS_MAXIMUM">1.4411087036133</MDI>
+      <MDI key="STATISTICS_MEAN">0.021128084803139</MDI>
+      <MDI key="STATISTICS_MINIMUM">0</MDI>
+      <MDI key="STATISTICS_STDDEV">0.1438256310692</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="4">
+    <Metadata>
+      <MDI key="basic_image_annot">G:</MDI>
+      <MDI key="basic_image_bits">8</MDI>
+      <MDI key="basic_image_bytes">1</MDI>
+      <MDI key="basic_image_history">isnobal</MDI>
+      <MDI key="geo_bline">4842544.9</MDI>
+      <MDI key="geo_bsamp">569029.6</MDI>
+      <MDI key="geo_coord_sys_ID">UTM</MDI>
+      <MDI key="geo_dline">-2.5</MDI>
+      <MDI key="geo_dsamp">2.5</MDI>
+      <MDI key="geo_units">meters</MDI>
+      <MDI key="lq_float_0">0</MDI>
+      <MDI key="lq_float_1">55.89339066</MDI>
+      <MDI key="lq_int_0">0</MDI>
+      <MDI key="lq_int_1">255</MDI>
+      <MDI key="lq_units">W/m^2</MDI>
+      <MDI key="STATISTICS_MAXIMUM">55.893390655518</MDI>
+      <MDI key="STATISTICS_MEAN">1.0649956885127</MDI>
+      <MDI key="STATISTICS_MINIMUM">0</MDI>
+      <MDI key="STATISTICS_STDDEV">7.0481043602225</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="5">
+    <Metadata>
+      <MDI key="basic_image_annot">M:</MDI>
+      <MDI key="basic_image_bits">8</MDI>
+      <MDI key="basic_image_bytes">1</MDI>
+      <MDI key="basic_image_history">isnobal</MDI>
+      <MDI key="geo_bline">4842544.9</MDI>
+      <MDI key="geo_bsamp">569029.6</MDI>
+      <MDI key="geo_coord_sys_ID">UTM</MDI>
+      <MDI key="geo_dline">-2.5</MDI>
+      <MDI key="geo_dsamp">2.5</MDI>
+      <MDI key="geo_units">meters</MDI>
+      <MDI key="lq_float_0">0</MDI>
+      <MDI key="lq_float_1">1</MDI>
+      <MDI key="lq_int_0">0</MDI>
+      <MDI key="lq_int_1">255</MDI>
+      <MDI key="lq_units">W/m^2</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="6">
+    <Metadata>
+      <MDI key="basic_image_annot">delta_Q:</MDI>
+      <MDI key="basic_image_bits">8</MDI>
+      <MDI key="basic_image_bytes">1</MDI>
+      <MDI key="basic_image_history">isnobal</MDI>
+      <MDI key="geo_bline">4842544.9</MDI>
+      <MDI key="geo_bsamp">569029.6</MDI>
+      <MDI key="geo_coord_sys_ID">UTM</MDI>
+      <MDI key="geo_dline">-2.5</MDI>
+      <MDI key="geo_dsamp">2.5</MDI>
+      <MDI key="geo_units">meters</MDI>
+      <MDI key="lq_float_0">-3.086817741</MDI>
+      <MDI key="lq_float_1">0</MDI>
+      <MDI key="lq_int_0">0</MDI>
+      <MDI key="lq_int_1">255</MDI>
+      <MDI key="lq_units">W/m^2</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="7">
+    <Metadata>
+      <MDI key="basic_image_annot">E_s:</MDI>
+      <MDI key="basic_image_bits">8</MDI>
+      <MDI key="basic_image_bytes">1</MDI>
+      <MDI key="basic_image_history">isnobal</MDI>
+      <MDI key="geo_bline">4842544.9</MDI>
+      <MDI key="geo_bsamp">569029.6</MDI>
+      <MDI key="geo_coord_sys_ID">UTM</MDI>
+      <MDI key="geo_dline">-2.5</MDI>
+      <MDI key="geo_dsamp">2.5</MDI>
+      <MDI key="geo_units">meters</MDI>
+      <MDI key="lq_float_0">0</MDI>
+      <MDI key="lq_float_1">0.002764703473</MDI>
+      <MDI key="lq_int_0">0</MDI>
+      <MDI key="lq_int_1">255</MDI>
+      <MDI key="lq_units">kg/m^2</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="8">
+    <Metadata>
+      <MDI key="basic_image_annot">melt:</MDI>
+      <MDI key="basic_image_bits">8</MDI>
+      <MDI key="basic_image_bytes">1</MDI>
+      <MDI key="basic_image_history">isnobal</MDI>
+      <MDI key="geo_bline">4842544.9</MDI>
+      <MDI key="geo_bsamp">569029.6</MDI>
+      <MDI key="geo_coord_sys_ID">UTM</MDI>
+      <MDI key="geo_dline">-2.5</MDI>
+      <MDI key="geo_dsamp">2.5</MDI>
+      <MDI key="geo_units">meters</MDI>
+      <MDI key="lq_float_0">0</MDI>
+      <MDI key="lq_float_1">1</MDI>
+      <MDI key="lq_int_0">0</MDI>
+      <MDI key="lq_int_1">255</MDI>
+      <MDI key="lq_units">kg/m^2</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="9">
+    <Metadata>
+      <MDI key="basic_image_annot">ro_predict:</MDI>
+      <MDI key="basic_image_bits">8</MDI>
+      <MDI key="basic_image_bytes">1</MDI>
+      <MDI key="basic_image_history">isnobal</MDI>
+      <MDI key="geo_bline">4842544.9</MDI>
+      <MDI key="geo_bsamp">569029.6</MDI>
+      <MDI key="geo_coord_sys_ID">UTM</MDI>
+      <MDI key="geo_dline">-2.5</MDI>
+      <MDI key="geo_dsamp">2.5</MDI>
+      <MDI key="geo_units">meters</MDI>
+      <MDI key="lq_float_0">0</MDI>
+      <MDI key="lq_float_1">1</MDI>
+      <MDI key="lq_int_0">0</MDI>
+      <MDI key="lq_int_1">255</MDI>
+      <MDI key="lq_units">kg</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="10">
+    <Metadata>
+      <MDI key="basic_image_annot">cc_s:</MDI>
+      <MDI key="basic_image_bits">8</MDI>
+      <MDI key="basic_image_bytes">1</MDI>
+      <MDI key="basic_image_history">isnobal</MDI>
+      <MDI key="geo_bline">4842544.9</MDI>
+      <MDI key="geo_bsamp">569029.6</MDI>
+      <MDI key="geo_coord_sys_ID">UTM</MDI>
+      <MDI key="geo_dline">-2.5</MDI>
+      <MDI key="geo_dsamp">2.5</MDI>
+      <MDI key="geo_units">meters</MDI>
+      <MDI key="lq_float_0">-29076.89062</MDI>
+      <MDI key="lq_float_1">0</MDI>
+      <MDI key="lq_int_0">0</MDI>
+      <MDI key="lq_int_1">255</MDI>
+      <MDI key="lq_units">J/m^2</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

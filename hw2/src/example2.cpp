@@ -14,8 +14,9 @@
 #include <mainframe.h>
 
 #include <terrain.h>
+#include <terrainmanager.h>
+#include <chrono>
 
- 
 using namespace std;
 
 bool initialize();
@@ -32,6 +33,7 @@ GLuint program;
 GLuint vbo_geometry;
 GLuint elements;
 GLuint texture;
+GLuint texture2;
 //uniform locations
 GLint loc_mvpmat;// Location of the modelviewprojection matrix in the shader
 wxImage image;
@@ -42,7 +44,7 @@ GLint shader_status;
 GLint loc_height;
 GLint colorm;
 float max_height = 2;
-
+int selected = 0;
 //transform matrices
 glm::mat4 model;//obj->world each object should have its own model matrix
 glm::mat4 view;//world->eye
@@ -55,6 +57,14 @@ float angle = 0;
 float angle2 = 0;
 renderer exampler;
 terrain trr;
+terrainManager tm;
+
+// Key map
+map<int,bool> keymap;
+map<int,bool> prevmap;
+
+std::chrono::system_clock::time_point current,previous; 
+
 class MyApp: public wxApp
 {
     virtual bool OnInit();
@@ -105,10 +115,6 @@ bool MyApp::OnInit()
     
     if(!initialize())
         return false;
-    if(!trr.loadTerrain("DCEWsqrExtent.tif"))
-    {
-      return false;
-    }
   MainWin->Show(true);
   return TRUE;
     //return true;
@@ -117,6 +123,7 @@ bool MyApp::OnInit()
 
 //wxDEFINE_EVENT(FILE_RECEIVED, wxCommandEvent);
 BEGIN_EVENT_TABLE(BasicGLPane, wxGLCanvas)
+EVT_IDLE(BasicGLPane::OnIdle)
 EVT_MOTION(BasicGLPane::mouseMoved)
 EVT_COMMAND(wxID_ANY, FILE_RECEIVED, BasicGLPane::test)
 EVT_LEFT_DOWN(BasicGLPane::mouseDown)
@@ -128,17 +135,20 @@ EVT_SIZE(BasicGLPane::resized)
 EVT_KEY_DOWN(BasicGLPane::keyPressed)
 EVT_KEY_UP(BasicGLPane::keyReleased)
 EVT_MOUSEWHEEL(BasicGLPane::mouseWheelMoved)
+
 EVT_PAINT(BasicGLPane::render)
+
 END_EVENT_TABLE()
 
  
-
+void moveCamera(float dt);
 // some useful events to use
 void BasicGLPane::test(wxCommandEvent& event)
 {
 cout << "THIS IS A TEST: " << event.GetString() << endl;
 trr.cleanup();
 trr.loadTerrain(event.GetString().ToStdString());
+trr.createMesh(glm::vec3(1,1,1));
 Refresh();
 }
 void BasicGLPane::mouseMoved(wxMouseEvent& event) {}
@@ -154,63 +164,92 @@ void BasicGLPane::mouseLeftWindow(wxMouseEvent& event) {}
 
 void BasicGLPane::keyPressed(wxKeyEvent& event) 
 {
-
-    if(event.GetKeyCode() == wxKeyCode('A'))
-    {
-      angle += 90;
-    }
-    else if(event.GetKeyCode() == wxKeyCode('D'))
-    {
-      angle -= 90;
-    }
-    if(event.GetKeyCode() == wxKeyCode('W'))
-    {
-      angle2 += 90;
-    }
-    else if(event.GetKeyCode() == wxKeyCode('S'))
-    {
-      angle2 -= 90;
-    }
-    //std::cout  << " " << angle << "KEY PRESSLED2" << position.x <<  ":POSITION" << position.z << std::endl;
-    //    std::cout  << " " << angle << "KEY PRESSLED" << position.x <<  ":POSITION" << position.z << std::endl;
-
-
-
-    //direction.rotateY(90.0f);
-    direction = glm::vec3(0,0,1);
-    direction = glm::rotateY(direction,angle*3.14f/180.f);
-    direction = glm::rotateX(direction,angle2*3.14f/180.f);
-    glm::vec3 motionvector = glm::vec3(0,0,0);
-    if(event.GetKeyCode() == WXK_LEFT)
-    {
-      position.x -= 1;
-    }
-
-    if(event.GetKeyCode() == WXK_RIGHT)
-    {
-      position.x += 1;
-    }
-
-    if(event.GetKeyCode() == WXK_UP)
-    {
-      direction = glm::normalize(direction);
-      motionvector = 2.f*direction;
-    }
-
-    if(event.GetKeyCode() == WXK_DOWN)
-    {
-      direction = glm::normalize(direction);
-      motionvector = -2.f * direction;
-    }
-    position += motionvector;
-    view = glm::lookAt( position, //Eye Position
-                        glm::vec3(position+direction), //Focus point
-                        glm::vec3(0.0, 1.0, 0.0)); //Positive Y is up
-    Refresh();
+    keymap[event.GetKeyCode()] = true;
+    //cout << "KEY DOWN" << endl;
+    
+    //Refresh();
+    event.Skip();
+    
 }
 void BasicGLPane::keyReleased(wxKeyEvent& event) 
 {
-
+    if(keymap[wxKeyCode('[')])
+    {
+        selected -= 1;
+        cout << "Next Image~" << endl;
+        selected = selected % tm.getRasterCount();
+    }
+    if(keymap[wxKeyCode(']')])
+    {
+        selected += 1;
+        cout << "Next Image~" << endl;
+        selected = selected % tm.getRasterCount();
+    }
+    if(keymap[wxKeyCode('1')])
+    {
+        tm.selectTexture(selected,1);
+    }
+    if(keymap[wxKeyCode('2')])
+    {
+        tm.selectTexture(selected,2);
+    }
+    if(keymap[wxKeyCode('3')])
+    {
+        tm.selectTexture(selected,3);
+    }
+    if(keymap[wxKeyCode('4')])
+    {
+        tm.selectTexture(selected,4);
+    }
+    if(keymap[wxKeyCode('5')])
+    {
+        tm.selectTexture(selected,5);
+    }
+    if(keymap[wxKeyCode('6')])
+    {
+        tm.selectTexture(selected,6);
+    }
+    if(keymap[wxKeyCode('7')])
+    {
+        tm.selectTexture(selected,7);
+    }
+    if(keymap[wxKeyCode('8')])
+    {
+        tm.selectTexture(selected,8);
+    }
+    if(keymap[wxKeyCode('9')])
+    {
+        tm.selectTexture(selected,9);
+    }
+    keymap[event.GetKeyCode()] = false;
+    cout << "KEY UP" << endl;
+}
+void BasicGLPane::OnIdle(wxIdleEvent &event)
+{
+    
+    /*for (std::map<int,bool>::iterator it=keymap.begin(); it!=keymap.end(); ++it)
+    {
+        prevmap[it->first] = it->second;
+    }*/
+    /*if (wxGetKeyState(wxKeyCode('H'))) {
+        cout << "H" << endl;
+    }*/
+    //cout << "IDLE" << endl;
+    current = std::chrono::system_clock::now();
+    float dt = std::chrono::duration<float>(current - previous).count(); 
+    moveCamera(dt);
+    if(dt >= 1.0/60.0)
+    {
+        //cout << "Rendering" << std::chrono::duration_cast<std::chrono::milliseconds>(current - previous).count() << endl;
+        Refresh();
+        previous = current;
+    }
+    else
+    {
+        //cout << "Not Rendering" << endl;
+    }   
+    /* Force the redraw immediately, gets the gfx card to its max */
+    //event.RequestMore();
 }
 void BasicGLPane::InitializeGLEW()
 {
@@ -226,26 +265,76 @@ void BasicGLPane::InitializeGLEW()
         const GLubyte* String = glewGetErrorString(err);
         wxMessageBox("GLEW is not initialized");
     } 
-    glEnable(GL_TEXTURE_1D);
+    //glEnable(GL_TEXTURE_1D);
+    glEnable(GL_TEXTURE_2D);
     wxInitAllImageHandlers();
+    unsigned char test[64*64];
+    for(int i =0; i < 64; i++)
+    {
+        for(int j = 0; j < 64; j++)
+        {
+            test[i*64+j] = i+j;
+        }
+    }
+
     image.LoadFile("colorMap.png");
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_1D, texture);
+    //glGenTextures(1, &texture);
+    //glBindTexture(GL_TEXTURE_1D, texture);
     // sample: specify texture parameters
     //glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     //glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
  
     /* Linear filtering usually looks best for text */
-    glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    //glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
 //glTexParameterf(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 //glTexParameterf(GL_TEXTURE_1D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     // set the active texture
 
-    cout << "IMAGE DIM " << image.GetWidth() << " " << image.GetHeight() << endl;
-    glTexImage1D(GL_TEXTURE_1D, 0, GL_RGB, image.GetWidth(), 0, GL_RGB, GL_UNSIGNED_BYTE, 
-    image.GetData());
+    //cout << "IMAGE DIM " << image.GetWidth() << " " << image.GetHeight() << endl;
+    //glTexImage1D(GL_TEXTURE_1D, 0, GL_RGB, image.GetWidth(), 0, GL_RGB, GL_UNSIGNED_BYTE, 
+    //image.GetData());
+    glGenTextures(1,&texture2);
+    glBindTexture(GL_TEXTURE_2D,texture2);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, 64,64, 0, GL_RED, GL_UNSIGNED_BYTE, test);
+    tm.addTerrain("DCEWsqrExtent.tif");
+    tm.addTerrain("tl2p5_dem.ipw.tif");
+    tm.addShape("streamDCEW/streamDCEW.shp");
+    tm.addShape("boundDCEW/boundDCEW.shp");
+    tm.selectTerrain(1);
+    tm.addMask("tl2p5mask.ipw.tif");
+    tm.addRaster("./isnobaloutput/em.1000.tif");
+    tm.addRaster("./isnobaloutput/em.1001.tif");
+    tm.addRaster("./isnobaloutput/em.1002.tif");
+    tm.addRaster("./isnobaloutput/em.1003.tif");
+    tm.addRaster("./isnobaloutput/em.1004.tif");
+    tm.addRaster("./isnobaloutput/em.1005.tif");
+    tm.addRaster("./isnobaloutput/em.1006.tif");
+    tm.addRaster("./isnobaloutput/em.1007.tif");
+    tm.addRaster("./isnobaloutput/em.1008.tif");
+    tm.addRaster("./isnobaloutput/em.1009.tif");
+    tm.addRaster("./isnobaloutput/em.1010.tif");
+    tm.addRaster("./isnobaloutput/snow.1000.tif");
+    tm.addRaster("./isnobaloutput/snow.1001.tif");
+    tm.addRaster("./isnobaloutput/snow.1002.tif");
+    tm.addRaster("./isnobaloutput/snow.1003.tif");
+    tm.addRaster("./isnobaloutput/snow.1004.tif");
+    tm.addRaster("./isnobaloutput/snow.1005.tif");
+    tm.addRaster("./isnobaloutput/snow.1006.tif");
+    tm.addRaster("./isnobaloutput/snow.1007.tif");
+    tm.addRaster("./isnobaloutput/snow.1008.tif");
+    tm.addRaster("./isnobaloutput/snow.1009.tif");
+    tm.addRaster("./isnobaloutput/snow.1010.tif");
+
+    tm.generateGraphMesh(true);
+    tm.setActiveTerrain();
+    tm.createMeshes();
+    tm.selectTexture(0,1);
+    //tm.generateGraphMesh(true);
+    previous = current = std::chrono::system_clock::now();
 }
 // Vertices and faces of a simple cube to demonstrate 3D render
 // source: http://www.opengl.org/resources/code/samples/glut_examples/examples/cube.c
@@ -296,8 +385,8 @@ void BasicGLPane::resized(wxSizeEvent& evt)
   glViewport( 0, 0, getWidth(), getHeight());
             projection = glm::perspective( 45.0f, //the FoV typically 90 degrees is good which is what this is set to
                                    float(getWidth())/float(getHeight()), //Aspect Ratio, so Circles stay Circular
-                                   0.01f, //Distance to the near plane, normally a small value like this
-                                   100.0f); //Distance to the far plane,
+                                   1.0f, //Distance to the near plane, normally a small value like this
+                                   100000000.0f); //Distance to the far plane,
 
     std::cout << "REFRESHING" << std::endl;  
     Refresh();
@@ -310,9 +399,9 @@ void BasicGLPane::prepare3DViewport(int topleft_x, int topleft_y, int bottomrigt
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Black Background
     glClearDepth(1.0f);	// Depth Buffer Setup
     glEnable(GL_DEPTH_TEST); // Enables Depth Testing
-    glDepthFunc(GL_LEQUAL); // The Type Of Depth Testing To Do
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
- 
+    glDepthFunc(GL_LESS); // The Type Of Depth Testing To Do
+    //glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
+    glHint(GL_CLIP_VOLUME_CLIPPING_HINT_EXT,GL_FASTEST);
     glEnable(GL_COLOR_MATERIAL);
  
     glViewport(topleft_x, topleft_y, bottomrigth_x-topleft_x, bottomrigth_y-topleft_y);
@@ -362,7 +451,7 @@ void BasicGLPane::render( wxPaintEvent& evt )
     //return;
     //if(starter)
     //{
-      std::cout << "Rendering" << getWidth() << " " << getHeight() << std::endl;
+      //std::cout << "Rendering" << getWidth() << " " << getHeight() << std::endl;
     wxGLCanvas::SetCurrent(*m_context);
     wxPaintDC(this); // only to be used in paint events. use wxClientDC to paint outside the paint event
  
@@ -370,282 +459,22 @@ void BasicGLPane::render( wxPaintEvent& evt )
     //--Render the scene
 
     //clear the screen
+    //tm.render(projection,view,texture);
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.0, 0.0, 0.2, 1.0);
-    //premultiply the matrix for this example
-    mvp = projection * view * model;
-
-    //enable the shader program
-    //glUseProgram(program);
-    //exampler.useProgram();
-    trr.render(projection,view,texture);
-    //upload the matrix to the shader
-    //glUniformMatrix4fv(loc_mvpmat, 1, GL_FALSE, glm::value_ptr(mvp));
-    //exampler.setUniformMatrix4x4("mvpMatrix",mvp);
-
-    //glUniform1f(loc_height,max_height);
-    //exampler.setUniformFloat("h",max_height);
-
-    //set up the Vertex Buffer Object so it can be drawn
-    //glEnableVertexAttribArray(loc_position);
-    //glEnableVertexAttribArray(loc_color);
-    //exampler.enableVertexAttribPointer("v_position");
-    //exampler.enableVertexAttribPointer("v_color");
-
-    //glEnable(GL_TEXTURE_1D);
-    //glUniform1i(colorm, 0);
-    //glActiveTexture(GL_TEXTURE0);
-    //glBindTexture(GL_TEXTURE_1D, texture);
-    //exampler.setTexture("tex",texture);
-    //glBindBuffer(GL_ARRAY_BUFFER, vbo_geometry);
-    //std::cout << loc_position << " " << loc_color << std::endl;
-    //set pointers into the vbo for each of the attributes(position and color)
-    /*glVertexAttribPointer( loc_position,//location of attribute
-                           3,//number of elements
-                           GL_FLOAT,//type
-                           GL_FALSE,//normalized?
-                           sizeof(Vertex),//stride
-                           0);//offset
-
-    glVertexAttribPointer( loc_color,
-                           3,
-                           GL_FLOAT,
-                           GL_FALSE,
-                           sizeof(Vertex),
-                           (void*)offsetof(Vertex,color));*/
-    //exampler.setGLVertexAttribPointer("v_position",3, GL_FLOAT, GL_FALSE,sizeof(Vertex),0);
-    //exampler.setGLVertexAttribPointer("v_color",3, GL_FLOAT, GL_FALSE,sizeof(Vertex),(void*)offsetof(Vertex,color));
-
-    // Index buffer
-    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elements);
-
-
-   // exampler.render(cs);
- // Draw the triangles !
- /*glDrawElements(
-     GL_LINES,      // mode
-     cs,    // count
-     GL_UNSIGNED_INT,   // type
-     (void*)0           // element array buffer offset
- );
-    //return;
-    //glDrawArrays(GL_TRIANGLES, 0, 36);//mode, starting index, count
-
-    //clean up
-    glDisableVertexAttribArray(loc_position);
-    glDisableVertexAttribArray(loc_color);*/
-    //exampler.disableVertexAttribPointer("v_color");
-    //exampler.disableVertexAttribPointer("v_position");       
-    //swap the buffers
-    //glutSwapBuffers();
+    //trr.render(projection,view,texture);
+    tm.render(projection,view,texture2);
     glFlush();
+    //setDoubleBuffer(true);
+    //this->SetDoubleBuffered(true);
     SwapBuffers();
   //}
 }
 
 bool initialize()
 {
-GLuint vertex_shader;
-GLuint frag_shader;
-GLuint vertex_shader2;
-GLuint frag_shader2;
 
-    // A Cube!
-    Vertex geometry[] = { {{-1.0, -1.0, -1.0}, {0.0, 0.0, 0.0}},
-                          {{-1.0, -1.0, 1.0}, {0.0, 0.0, 1.0}},
-                          {{-1.0, 1.0, 1.0}, {0.0, 1.0, 1.0}},
-
-                          {{1.0, 1.0, -1.0}, {1.0, 1.0, 0.0}},
-                          {{-1.0, -1.0, -1.0}, {0.0, 0.0, 0.0}},
-                          {{-1.0, 1.0, -1.0}, {0.0, 1.0, 0.0}},
-                          
-                          {{1.0, -1.0, 1.0}, {1.0, 0.0, 1.0}},
-                          {{-1.0, -1.0, -1.0}, {0.0, 0.0, 0.0}},
-                          {{1.0, -1.0, -1.0}, {1.0, 0.0, 0.0}},
-                          
-                          {{1.0, 1.0, -1.0}, {1.0, 1.0, 0.0}},
-                          {{1.0, -1.0, -1.0}, {1.0, 0.0, 0.0}},
-                          {{-1.0, -1.0, -1.0}, {0.0, 0.0, 0.0}},
-
-                          {{-1.0, -1.0, -1.0}, {0.0, 0.0, 0.0}},
-                          {{-1.0, 1.0, 1.0}, {0.0, 1.0, 1.0}},
-                          {{-1.0, 1.0, -1.0}, {0.0, 1.0, 0.0}},
-
-                          {{1.0, -1.0, 1.0}, {1.0, 0.0, 1.0}},
-                          {{-1.0, -1.0, 1.0}, {0.0, 0.0, 1.0}},
-                          {{-1.0, -1.0, -1.0}, {0.0, 0.0, 0.0}},
-
-                          {{-1.0, 1.0, 1.0}, {0.0, 1.0, 1.0}},
-                          {{-1.0, -1.0, 1.0}, {0.0, 0.0, 1.0}},
-                          {{1.0, -1.0, 1.0}, {1.0, 0.0, 1.0}},
-                          
-                          {{1.0, 1.0, 1.0}, {1.0, 1.0, 1.0}},
-                          {{1.0, -1.0, -1.0}, {1.0, 0.0, 0.0}},
-                          {{1.0, 1.0, -1.0}, {1.0, 1.0, 0.0}},
-
-                          {{1.0, -1.0, -1.0}, {1.0, 0.0, 0.0}},
-                          {{1.0, 1.0, 1.0}, {1.0, 1.0, 1.0}},
-                          {{1.0, -1.0, 1.0}, {1.0, 0.0, 1.0}},
-
-                          {{1.0, 1.0, 1.0}, {1.0, 1.0, 1.0}},
-                          {{1.0, 1.0, -1.0}, {1.0, 1.0, 0.0}},
-                          {{-1.0, 1.0, -1.0}, {0.0, 1.0, 0.0}},
-
-                          {{1.0, 1.0, 1.0}, {1.0, 1.0, 1.0}},
-                          {{-1.0, 1.0, -1.0}, {0.0, 1.0, 0.0}},
-                          {{-1.0, 1.0, 1.0}, {0.0, 1.0, 1.0}},
-
-                          {{1.0, 1.0, 1.0}, {1.0, 1.0, 1.0}},
-                          {{-1.0, 1.0, 1.0}, {0.0, 1.0, 1.0}},
-                          {{1.0, -1.0, 1.0}, {1.0, 0.0, 1.0}}
-                        };
-
-    program = glCreateProgram();
-    vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-    //shade2 = shader(vertex_shader);
-    frag_shader = glCreateShader(GL_FRAGMENT_SHADER);
-        vertex_shader2 = glCreateShader(GL_VERTEX_SHADER);
-
-    frag_shader2 = glCreateShader(GL_FRAGMENT_SHADER);
-    //shade = shader(frag_shader);
-    shader shade2(vertex_shader);
-    shader shade(frag_shader);
-    exampler.init();
-    if(!shade.open("../shaders/frag.shader"))
-    {
-        cout << "Failed to open shader" << std::endl;
-        return false;
-    }
-    if(!shade2.open("../shaders/vert.shader"))
-    {
-        cout << "Failed to open shader" << endl;
-        return false;
-    }
-    if(!exampler.addShader(vertex_shader2,"../shaders/vert.shader"))
-    {
-      cout << "Failed to add shader" << endl;
-      return false;
-    }
-    if(!exampler.addShader(frag_shader2,"../shaders/frag.shader"))
-    {
-      cout << "Failed to add shader" << endl;
-      return false;
-    }
-
-    if(!exampler.compile())
-    {
-      cout << "Failed to compile shaders" << endl;
-      return false;
-    }
-    if(!exampler.link())
-    {
-      cout << "Failed to link shaders" << endl;
-      return false;
-    }
-
-    if(!shade.compile())
-    {
-      cout << "Failed to compile" << endl;
-      return false;
-    } 
-    if(!shade2.compile())
-    {
-      cout << "failed to compile" << endl;
-    } 
-    if(!shade2.link(program))
-    {
-      cout << "failed to link" << endl;
-    } 
-    if(!shade.link(program))
-    {
-      cout << "failed to link" << endl;
-    } 
-
-
-    //glTexImage2D(GL_TEXTURE_1D, 0, ship.bytes_per_pixel, ship.width, ship.height, 0, GetDataFormat(), GetDataType(), ship.pixel_data);
-    
-    //glGetProgramiv(program, GL_LINK_STATUS, &shader_status);
-    //if(!shader_status)
-    //{
-     //   std::cerr << "[F] THE SHADER PROGRAM FAILED TO LINK" << std::endl;
-     //   return false;
-    //}
-       // Create a Vertex Buffer object to store this vertex info on the GPU
-    //glGenBuffers(1, &vbo_geometry);
-    //glBindBuffer(GL_ARRAY_BUFFER, vbo_geometry);
-    //glBufferData(GL_ARRAY_BUFFER, sizeof(geometry), geometry, GL_STATIC_DRAW);
-    vector<vector<float>> floatarr = vector<vector<float>>(getRawValuesFromFile("test.pgm"));
-    if(floatarr.size() == 0)
-    {
-      return false;
-    }
-    cout << "GOT RAW VALUES! " << floatarr.size() << endl;
-    float min=100000000,max=-100000;
-    for(int i =0; i < floatarr.size(); i++)
-      for(int j = 0; j < floatarr[i].size(); j++)
-      {
-        //cout << "LOOP" << j << " " << floatarr[i].size() << endl;
-        float v = floatarr[i][j];
-        
-        if(v > max)
-        {
-          max = v;
-        }
-        if(v < min && v > 0)
-        {
-          min = v;
-        }
-        if(v < 0)
-        {
-          floatarr[i][j] = 0;
-        }
-      } 
-    std::cout << "Creating Mesh" << min << " " << max<< std::endl;
-    cs=fromRawCreateMesh(floatarr,min,max,vbo_geometry,elements);
-    //Now we set the locations of the attributes and uniforms
-    //this allows us to access them easily while rendering
-    loc_position = glGetAttribLocation(program,
-                    const_cast<const char*>("v_position"));
-    if(loc_position == -1)
-    {
-        std::cerr << "[F] POSITION NOT FOUND" << std::endl;
-        return false;
-    }
-
-    loc_color = glGetAttribLocation(program,
-                    const_cast<const char*>("v_color"));
-    if(loc_color == -1)
-    {
-        std::cerr << "[F] V_COLOR NOT FOUND" << std::endl;
-        return false;
-    }
-
-    loc_height = glGetUniformLocation(program,
-                    const_cast<const char*>("h"));
-    if(loc_height == -1)
-    {
-        std::cerr << "[F] HEIGHT NOT FOUND" << std::endl;
-        return false;
-    }
-
-    loc_mvpmat = glGetUniformLocation(program,
-                    const_cast<const char*>("mvpMatrix"));
-    if(loc_mvpmat == -1)
-    {
-        std::cerr << "[F] MVPMATRIX NOT FOUND" << std::endl;
-        return false;
-    }
-
-    colorm = glGetUniformLocation(program, "tex");
-    if(colorm == -1)
-    {
-        std::cerr << "[F] Color Map NOT FOUND" << std::endl;
-        return false;
-    }
-
-    
-    std::cout << loc_mvpmat << " " << loc_color << " " << loc_position << std::endl;
     //--Init the view and projection matrices
     //  if you will be having a moving camera the view matrix will need to more dynamic
     //  ...Like you should update it before you render more dynamic 
@@ -654,13 +483,78 @@ GLuint frag_shader2;
                         glm::vec3(0, 10.0, 1.0), //Focus point
                         glm::vec3(0.0, 1.0, 0.0)); //Positive Y is up
    
-   // projection = glm::perspective( 45.0f, //the FoV typically 90 degrees is good which is what this is set to
+    //projection = glm::perspective( 45.0f, //the FoV typically 90 degrees is good which is what this is set to
      //                              float(w)/float(h), //Aspect Ratio, so Circles stay Circular
-       //                            0.01f, //Distance to the near plane, normally a small value like this
-         //                          100.0f); //Distance to the far plane, 
+      //                             0.01f, //Distance to the near plane, normally a small value like this
+       //                            100.0f); //Distance to the far plane, 
     
     //enable depth testing
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
+    keymap[wxKeyCode('A')] = false;
+    keymap[wxKeyCode('S')] = false;
+    keymap[wxKeyCode('D')] = false;
+    keymap[wxKeyCode('W')] = false;
+    keymap[WXK_LEFT] = false;
+    keymap[WXK_RIGHT] = false;
+    keymap[WXK_UP] = false;
+    keymap[WXK_DOWN] = false;
+    //glEnable(GL_CULL_FACE);
+    //glDepthMask( GL_FALSE );
     return true;
+}
+
+void moveCamera(float dt)
+{
+
+    if(keymap[wxKeyCode('A')] )
+    {
+        cout << "ANGLE" << endl;
+        angle += 15*dt;
+    }
+    if(keymap[wxKeyCode('D')] )
+    {
+        angle -= 15*dt;
+    }
+    if(keymap[wxKeyCode('W')] )
+    {
+        angle2 += 15*dt;
+    }
+    if(keymap[wxKeyCode('S')] )
+    {
+        angle2 -= 15*dt;
+    }
+
+    direction = glm::vec3(0,0,1);
+    //direction = glm::rotateY(direction,angle);
+    //direction = glm::rotateX(direction,angle2);
+    direction = glm::rotate(direction, angle, glm::vec3(0,1,0));
+    direction = glm::rotate(direction, angle2, glm::cross(direction, glm::vec3(0,1,0)));
+    glm::vec3 motionvector = glm::vec3(0,0,0);
+    if(keymap[WXK_LEFT] )
+    {
+        motionvector += 2.f*glm::cross(direction, glm::vec3(0,1,0));
+
+    }
+
+    if(keymap[WXK_RIGHT] )
+    {
+        motionvector -= 2.f*glm::cross(direction, glm::vec3(0,1,0));
+    }
+
+    if(keymap[WXK_UP] )
+    {
+        direction = glm::normalize(direction);
+        motionvector += 2.f*direction;
+    }
+
+    if(keymap[WXK_DOWN])
+    {
+        direction = glm::normalize(direction);
+        motionvector += -2.f * direction;
+    }
+    position += motionvector;
+    view = glm::lookAt( position, //Eye Position
+                        glm::vec3(position+direction), //Focus point
+                        glm::vec3(0.0, 1.0, 0.0)); //Positive Y is up
 }

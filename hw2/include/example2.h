@@ -37,6 +37,7 @@ public:
 	void keyReleased(wxKeyEvent& event);
     void onCharEvent(wxKeyEvent& event);
     void test(wxCommandEvent& event);
+    void OnIdle(wxIdleEvent &event);
 	DECLARE_EVENT_TABLE()
 
 };

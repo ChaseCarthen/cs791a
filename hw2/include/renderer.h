@@ -32,6 +32,12 @@ public:
         getUniform(name,v);
 		glUniformMatrix4fv(v, 1, GL_FALSE, glm::value_ptr(mat));
 	};
+    void setUniformInteger(string name, int val)
+    {
+       GLint v; 
+       getUniform(name,v);
+       glUniform1i(v,val);
+    };
     void setUniformFloat(string name, float val)
     {
        GLint v; 
@@ -67,13 +73,13 @@ public:
 	// Others for other versions of glsl.
 
 	// Assuming 1D Texture...
-	void setTexture(string name,GLuint texture)
+	void setTexture(string name,GLenum texTarget,GLuint number,GLuint texture)
 	{
 		GLint v; 
         getUniform(name,v);
-    	glEnable(GL_TEXTURE_1D);
+    	glEnable(texTarget);
     	glUniform1i(v, 0);
- 		glActiveTexture(GL_TEXTURE0);
+ 		glActiveTexture(number - GL_TEXTURE0);
  		glBindTexture(GL_TEXTURE_1D, texture);
 	};
 
